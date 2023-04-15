@@ -7,12 +7,3 @@ body {
 	background: black;
 	color: white;
 }
-
-input {
-	background: none;
-	border: none;
-
-	display: inline;
-
-	width: 100%;
-}
