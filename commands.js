@@ -98,7 +98,7 @@ const commands = {
 
 				stdout("Folder does not exist\n");
 			}
-		}
+		},
 		description: "Changes directory to given directory"
 	},
 	"touch": {
