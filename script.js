@@ -7,7 +7,7 @@ const prompt = "guest@road:~$ "; // Temporary prompt for now
 let input = "";
 
 let canWrite = true;
-let writingBox = false; // ▌ symbol at the end of input
+let writingBox = false; // | symbol at the end of input
 
 // Functions
 function stdout(out) {
@@ -18,7 +18,7 @@ function stdout(out) {
 
 function updateInput() {
 	if(writingBox) {
-		inElement.innerText = prompt + input + "▌";
+		inElement.innerText = prompt + input + "|";
 	} else {
 		inElement.innerText = prompt + input;
 	}
