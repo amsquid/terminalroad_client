@@ -1,5 +1,5 @@
 // Variables
-let outElement = document.getElementById("code");
+let outElement = document.getElementById("out");
 let inElement = document.getElementById("input");
 
 const prompt = "guest@road:~$ "; // Temporary prompt for now
@@ -39,7 +39,17 @@ document.addEventListener("keydown", (e) => {
 				case "Enter":
 					stdout(prompt + input + "\n");
 
+					let split = input.split(" ");
+					let command = split[0];
+
+					if(commands[command] != undefined) {
+						commands[command].action(split);
+					} else {
+						stdout("Illegal Command\n");
+					}
+
 					input = "";
+
 					break;
 
 				case "Backspace":
