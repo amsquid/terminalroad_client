@@ -66,7 +66,7 @@ const commands = {
 				}
 			}
 
-			stdout("File does not exist");
+			stdout("File does not exist\n");
 
 		},
 		description: "Prints the contents of a file"
