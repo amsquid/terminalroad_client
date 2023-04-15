@@ -25,5 +25,15 @@ const commands = {
 			document.getElementById("out").innerText = "";
 		},
 		description: "Clears input the screen"
+	},
+	"echo": {
+		action: function(args) {
+			for(let i = 1; i < args.length; i++) {
+				stdout(args[i] + " ");
+			}
+
+			stdout("\n");
+		},
+		description: "Prints the given arguments into the stdout"
 	}
 }
