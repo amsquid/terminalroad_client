@@ -60,6 +60,28 @@ function findFilesInDir(folder_path) {
 	return files;
 }
 
+function addFileToDir(folder_path, file) {
+	let directory = folder_path.split("/");
+
+	let files = filesystem;
+
+	for(let i = 0; i < directory.length; i++) {
+		let dir = directory[i];
+
+		if(dir !== "") {
+			for(let x = 0; x < files.contents.length; x++) {
+				let folder = files.contents[x];
+
+				if(folder != undefined && folder.constructor == trFolder) {
+					files = folder;
+				}
+			}
+		}
+	}
+
+	files.contents.push(file);
+}
+
 // Startup Code
 stdout("Welcome to the Terminal Road\nDon't Cheat!\n");
 

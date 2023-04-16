@@ -7,12 +7,11 @@ const commands = {
 			const cmd = args[1];
 
 			if(cmd == undefined) {
-				stdout("Available Commands\n=================\n");
-
 				let keys = Object.keys(commands);
+				let vals = Object.values(commands);
 
 				for(let i = 0; i < keys.length; i++) {
-					stdout(keys[i] + "\n");
+					stdout(keys[i] + " - " + vals[i].description + "\n");
 				}
 			} else {
 				stdout(commands[args[1]].description + "\n");
@@ -103,7 +102,11 @@ const commands = {
 	},
 	"touch": {
 		action: function(args) {
+			let file_name = args[1];
 
+			let file = new trFile(file_name, "");
+
+			addFileToDir(working_directory, file);
 		}
 	}
 }
