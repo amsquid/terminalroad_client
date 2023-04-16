@@ -197,7 +197,7 @@ document.addEventListener("keydown", (e) => {
 						let content;
 
 						for(let i = 0; i < files.contents.length; i++) {
-							if(command = files.contents[i].name) {
+							if(command === files.contents[i].name) {
 								content = files.contents[i].content;
 							}
 						}
