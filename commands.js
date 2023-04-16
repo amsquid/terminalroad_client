@@ -123,7 +123,11 @@ const commands = {
 
 			let path = working_directory + file_name;
 
-			writeToFile(path, content);
+			let code = writeToFile(path, content);
+
+			if(code == -1) {
+				stdout("File does not exist\n");
+			}
 		},
 		description: "Overwrites file with given text | put <file name> <content>"
 	},
@@ -136,5 +140,16 @@ const commands = {
 			addFileToDir(working_directory, folder);
 		},
 		description: "Creates directory with given name | mkdir <folder name>"
+	},
+	"rm": {
+		action: function(args) {
+			let file_name = args[1];
+
+			let code = delFile(working_directory + file_name);
+
+			if(code == -1) {
+				stdout("File does not exist\n")
+			}
+		}
 	}
 }

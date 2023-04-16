@@ -165,8 +165,6 @@ function delFile(file_path) {
 	}
 
 	files = files.contents.splice(file_index, 1);
-
-	return file_index;
 }
 
 // Startup Code
