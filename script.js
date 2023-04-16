@@ -52,6 +52,8 @@ function findFilesInDir(folder_path) {
 
 				if(folder != undefined && folder.constructor == trFolder) {
 					files = folder;
+
+					break;
 				}
 			}
 		}
@@ -74,12 +76,92 @@ function addFileToDir(folder_path, file) {
 
 				if(folder != undefined && folder.constructor == trFolder) {
 					files = folder;
+
+					break;
 				}
 			}
 		}
 	}
 
 	files.contents.push(file);
+}
+
+function writeToFile(file_path, content) {
+	let split_path = file_path.split("/");
+
+	let directory = split_path.splice(0, -1);
+	let file_name = split_path[split_path.length - 1];
+
+	let files = filesystem;
+
+	for(let i = 0; i < directory.length; i++) {
+		let dir = directory[i];
+
+		if(dir !== "") {
+			for(let x = 0; x < files.contents.length; x++) {
+				let folder = files.contents[x];
+
+				if(folder != undefined && folder.constructor == trFolder) {
+					files = folder;
+
+					break;
+				}
+			}
+		}
+	}
+
+	let file;
+
+	for(let i = 0; i < files.contents.length; i++) {
+		let file_ = files.contents[i];
+
+		if(file_.name == file_name) {
+			file = file_;
+
+			break;
+		}
+	}
+
+	file.content = content;
+}
+
+function delFile(file_path) {
+	let split_path = file_path.split("/");
+
+	let directory = split_path.splice(0, -1);
+	let file_name = split_path[-1];
+
+	let files = filesystem;
+
+	for(let i = 0; i < directory.length; i++) {
+		let dir = directory[i];
+
+		if(dir !== "") {
+			for(let x = 0; x < files.contents.length; x++) {
+				let folder = files.contents[x];
+
+				if(folder != undefined && folder.constructor == trFolder) {
+					files = folder;
+				
+					break;
+				}
+			}
+		}
+	}
+
+	let file_index = 0;
+
+	for(let i = 0; i < files.contents.length; i++) {
+		let file = files.contents[i];
+
+		if(file.name == file_name) {
+			file_index = i;
+
+			break;
+		}
+	}
+
+	files = files.contents.splice(file_index, 1);
 }
 
 // Startup Code

@@ -17,7 +17,7 @@ const commands = {
 				stdout(commands[args[1]].description + "\n");
 			}
 		},
-		description: "Prints out the description of the command given"
+		description: "Prints out the description of the command given | help <command>"
 	},
 	"clear": {
 		action: function(args) {
@@ -47,7 +47,7 @@ const commands = {
 
 			stdout("\n");
 		},
-		description: "Prints the current directory's files to the stdout"
+		description: "Prints the current directory's files to the stdout | ls"
 	},
 	"cat": {
 		action: function(args) {
@@ -68,7 +68,7 @@ const commands = {
 			stdout("File does not exist\n");
 
 		},
-		description: "Prints the contents of a file"
+		description: "Prints the contents of a file | cat <file>"
 	},
 	"cd": {
 		action: function(args) {
@@ -89,7 +89,7 @@ const commands = {
 					let file = files.contents[i];
 
 					if(file.name == folder_name && file.constructor == trFolder) {
-						working_directory += folder_name;
+						working_directory += folder_name + "/";
 
 						return;
 					}
@@ -98,7 +98,7 @@ const commands = {
 				stdout("Folder does not exist\n");
 			}
 		},
-		description: "Changes directory to given directory"
+		description: "Changes directory to given directory | cd <dir>"
 	},
 	"touch": {
 		action: function(args) {
@@ -107,6 +107,24 @@ const commands = {
 			let file = new trFile(file_name, "");
 
 			addFileToDir(working_directory, file);
-		}
+		},
+		description: "Creates file with given name in current directory"
+	},
+	"put": {
+		action: function(args) {
+			let file_name = args[1];
+			let content = "";
+
+			for(let i = 2; i < args.length; i++) {
+				content += args[i] + " ";
+			}
+
+			let file = new trFile(file_name, content);
+
+			let path = working_directory + file_name;
+
+			writeToFile(path, content);
+		},
+		description: "Overwrites file with given text | put <file name> <content>"
 	}
 }
