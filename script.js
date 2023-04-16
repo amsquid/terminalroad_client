@@ -11,6 +11,8 @@ let input = "";
 let canWrite = true;
 let writingBox = false; // | symbol at the end of input
 
+let blinking_symbol = "_";
+
 let filesystem = new trFolder("", [
 	new trFile("test.txt", "you read a file :)"),
 	new trFile("test1.txt", "you read a file :)"),
@@ -32,7 +34,7 @@ function updateInput() {
 	prompt = "guest@road:" + working_directory + "$ ";
 
 	if(writingBox) {
-		inElement.innerText = prompt + input + "|";
+		inElement.innerText = prompt + input + blinking_symbol;
 	} else {
 		inElement.innerText = prompt + input;
 	}
