@@ -9,17 +9,13 @@ let working_directory = "/";
 let input = "";
 
 let canWrite = true;
-let writingBox = false; // | symbol at the end of input
+let writingBox = false; // Blinking symbol at the end of input
 
 let blinking_symbol = "_";
 
 let filesystem = new trFolder("", [
-	new trFile("test.txt", "you read a file :)"),
-	new trFile("test1.txt", "you read a file :)"),
-	new trFile("test2.txt", "you read a file :)"),
-	new trFile("test3.txt", "you read a file :)"),
-	new trFolder("test_folder", [
-		new trFile("file.txt", "woah you changed directories")
+	new trFolder("bin", [
+		new trFile("test_app", "echo The app works!; echo Automation is incredible!")
 	])
 ]);
 
@@ -167,7 +163,7 @@ function delFile(file_path) {
 }
 
 // Startup Code
-stdout("Welcome to the Terminal Road\nDon't Cheat!\n");
+stdout("Welcome to the Terminal Road\nType help for the list of commands\n");
 
 updateInput();
 
