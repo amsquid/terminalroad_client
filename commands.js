@@ -1,6 +1,21 @@
 // I want to change this to be actual "files" in game later on 
 // Whoever finds this found a "sneak peek"
 
+function interpret(string) {
+	let formatted = string.replaceAll("; ", ";")
+
+	let commands_arr = formatted.split(";");
+
+	for(let i = 0; i < commands_arr.length; i++) {
+		let split = commands_arr[i].split(" ");
+	
+		let command_str = split[0];
+		let command = commands[command_str];
+
+		command.action(split);
+	}
+}
+
 const commands = { 
 	"help": {
 		action: function(args) {
@@ -150,6 +165,7 @@ const commands = {
 			if(code == -1) {
 				stdout("File does not exist\n")
 			}
-		}
+		},
+		description: "Removes given file | rm <file name>"
 	}
 }

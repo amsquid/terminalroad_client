@@ -190,9 +190,23 @@ document.addEventListener("keydown", (e) => {
 					let command = split[0];
 
 					if(commands[command] != undefined) {
-						commands[command].action(split);
+						interpret(input);
 					} else {
-						stdout("Illegal Command\n");
+						let files = findFilesInDir("/bin");
+
+						let content;
+
+						for(let i = 0; i < files.contents.length; i++) {
+							if(command = files.contents[i].name) {
+								content = files.contents[i].content;
+							}
+						}
+
+						if(content == undefined) {
+							stdout("Illegal Command\n");
+						} else {
+							interpret(content);
+						}
 					}
 
 					input = "";
@@ -203,6 +217,7 @@ document.addEventListener("keydown", (e) => {
 
 				case "Backspace":
 					input = input.slice(0, -1);
+					break;
 			}
 		}
 
