@@ -48,7 +48,7 @@ function findFilesInDir(folder_path) {
 			for(let x = 0; x < files.contents.length; x++) {
 				let folder = files.contents[x];
 
-				if(folder != undefined && folder.constructor == trFolder) {
+				if(folder != undefined && folder.constructor == trFolder && folder.name == dir) {
 					files = folder;
 
 					break;
@@ -72,7 +72,7 @@ function addFileToDir(folder_path, file) {
 			for(let x = 0; x < files.contents.length; x++) {
 				let folder = files.contents[x];
 
-				if(folder != undefined && folder.constructor == trFolder) {
+				if(folder != undefined && folder.constructor == trFolder && folder.name == dir) {
 					files = folder;
 
 					break;
@@ -87,19 +87,20 @@ function addFileToDir(folder_path, file) {
 function writeToFile(file_path, content) {
 	let split_path = file_path.split("/");
 
-	let directory = split_path.splice(0, -1);
 	let file_name = split_path[split_path.length - 1];
+	
+	split_path.pop(); // Gets only the directories without the file
 
 	let files = filesystem;
 
-	for(let i = 0; i < directory.length; i++) {
-		let dir = directory[i];
+	for(let i = 0; i < split_path.length; i++) {
+		let dir = split_path[i];
 
 		if(dir !== "") {
 			for(let x = 0; x < files.contents.length; x++) {
 				let folder = files.contents[x];
 
-				if(folder != undefined && folder.constructor == trFolder) {
+				if(folder != undefined && folder.constructor == trFolder && folder.name == dir) {
 					files = folder;
 
 					break;
@@ -120,7 +121,11 @@ function writeToFile(file_path, content) {
 		}
 	}
 
-	file.content = content;
+	if(file == undefined) {
+		return -1;
+	} else {
+		file.content = content;
+	}
 }
 
 function delFile(file_path) {
@@ -138,7 +143,7 @@ function delFile(file_path) {
 			for(let x = 0; x < files.contents.length; x++) {
 				let folder = files.contents[x];
 
-				if(folder != undefined && folder.constructor == trFolder) {
+				if(folder != undefined && folder.constructor == trFolder && folder.name == dir) {
 					files = folder;
 				
 					break;
@@ -147,7 +152,7 @@ function delFile(file_path) {
 		}
 	}
 
-	let file_index = 0;
+	let file_index = -1;
 
 	for(let i = 0; i < files.contents.length; i++) {
 		let file = files.contents[i];
@@ -160,6 +165,8 @@ function delFile(file_path) {
 	}
 
 	files = files.contents.splice(file_index, 1);
+
+	return file_index;
 }
 
 // Startup Code

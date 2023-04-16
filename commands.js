@@ -126,5 +126,15 @@ const commands = {
 			writeToFile(path, content);
 		},
 		description: "Overwrites file with given text | put <file name> <content>"
+	},
+	"mkdir": {
+		action: function(args) {
+			let folder_name = args[1];
+
+			let folder = new trFolder(folder_name, []);
+
+			addFileToDir(working_directory, folder);
+		},
+		description: "Creates directory with given name | mkdir <folder name>"
 	}
 }
