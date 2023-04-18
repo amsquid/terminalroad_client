@@ -168,7 +168,7 @@ function delFile(file_path) {
 }
 
 // Startup Code
-stdout("Welcome to the Terminal Road\nType help for the list of commands\n");
+stdout("Welcome to the Terminal Road\nType help for the list of commands\nBy playing this game, you aknowledge that any information you input into the game can be stolen by other players.\n");
 
 updateInput();
 
