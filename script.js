@@ -19,8 +19,8 @@ let filesystem = new trFolder("", [
 	])
 ]);
 
-const socket = io("localhost:3000", {
-	withCredentials: true
+const socket = io("http://localhost:3000", {
+	withCredentials: false
 });
 
 // Functions
