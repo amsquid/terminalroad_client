@@ -19,6 +19,10 @@ let filesystem = new trFolder("", [
 	])
 ]);
 
+const socket = io("localhost:3000", {
+	withCredentials: true
+});
+
 // Functions
 function stdout(out) {
 	outElement.innerText += out;
