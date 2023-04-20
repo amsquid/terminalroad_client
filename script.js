@@ -29,12 +29,16 @@ const socket = io("http://localhost:3000", {
 });
 
 // Functions
-function signin(ip, username, password) {
+function signin(connect_ip, username, password) {
 	socket.emit("login", {
-		"ip": ip,
+		"ip": connect_ip,
 		"username": username,
 		"password": password
 	});
+
+	ip = connect_ip;
+	user = username;
+
 }
 
 // Startup Code

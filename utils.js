@@ -12,6 +12,10 @@ function isFile(obj) {
 	return obj.content != undefined;
 }
 
+function save() {
+	socket.emit("save", {"files": filesystem});
+}
+
 function updateInput() {
 	if(logging_in) {
 		switch(login_prompt) {
@@ -41,7 +45,7 @@ function updateInput() {
 				updateInput();
 		}
 	} else {
-		prompt = "guest@road:" + working_directory + "$ ";
+		prompt = user + "@" + ip + ":" + working_directory + "$ ";
 	}
 
 	if(writingBox) {
@@ -97,6 +101,8 @@ function addFileToDir(folder_path, file) {
 	}
 
 	files.contents.push(file);
+
+	save();
 }
 
 function writeToFile(file_path, content) {
@@ -141,6 +147,8 @@ function writeToFile(file_path, content) {
 	} else {
 		file.content = content;
 	}
+
+	save();
 }
 
 function delFile(file_path) {
@@ -180,4 +188,6 @@ function delFile(file_path) {
 	}
 
 	files = files.contents.splice(file_index, 1);
+
+	save();
 }
