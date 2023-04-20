@@ -94,9 +94,15 @@ const commands = {
 			if(folder_name == "..") {
 				let dir_split = working_directory.split("/");
 
-				dir_split = dir_split.splice(0, -1);
+				let del_index = dir_split.length - 2;
+
+				if(del_index < 1) del_index = 1; // Error mitigation
+
+				dir_split.length = del_index;
 
 				working_directory = dir_split.join("/");
+
+				if(working_directory != "" && !working_directory.endsWith("/")) working_directory += "/"; // Putting the / on the end so it doesn't bug out
 
 				if(working_directory == "") working_directory = "/"; // Just to have it there, no real change
 			} else {
