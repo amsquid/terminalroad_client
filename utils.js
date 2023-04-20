@@ -4,6 +4,14 @@ function stdout(out) {
 	return out;
 }
 
+function isFolder(obj) {
+	return obj.contents != undefined;
+}
+
+function isFile(obj) {
+	return obj.content != undefined;
+}
+
 function updateInput() {
 	if(logging_in) {
 		switch(login_prompt) {
@@ -55,7 +63,7 @@ function findFilesInDir(folder_path) {
 			for(let x = 0; x < files.contents.length; x++) {
 				let folder = files.contents[x];
 
-				if(folder != undefined && folder.constructor == trFolder && folder.name == dir) {
+				if(folder != undefined && isFolder(folder) && folder.name == dir) {
 					files = folder;
 
 					break;
@@ -79,7 +87,7 @@ function addFileToDir(folder_path, file) {
 			for(let x = 0; x < files.contents.length; x++) {
 				let folder = files.contents[x];
 
-				if(folder != undefined && folder.constructor == trFolder && folder.name == dir) {
+				if(folder != undefined && isFolder(folder) && folder.name == dir) {
 					files = folder;
 
 					break;
@@ -107,7 +115,7 @@ function writeToFile(file_path, content) {
 			for(let x = 0; x < files.contents.length; x++) {
 				let folder = files.contents[x];
 
-				if(folder != undefined && folder.constructor == trFolder && folder.name == dir) {
+				if(folder != undefined && isFolder(folder) && folder.name == dir) {
 					files = folder;
 
 					break;
@@ -150,7 +158,7 @@ function delFile(file_path) {
 			for(let x = 0; x < files.contents.length; x++) {
 				let folder = files.contents[x];
 
-				if(folder != undefined && folder.constructor == trFolder && folder.name == dir) {
+				if(folder != undefined && isFolder(folder) && folder.name == dir) {
 					files = folder;
 				
 					break;

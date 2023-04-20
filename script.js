@@ -119,7 +119,9 @@ socket.on("signed_in", (data) => {
 	canWrite = true;
 	login_prompt = 0;
 
-	if(!signed_in) {
+	if(signed_in) {
+		filesystem = data['files'];
+	} else {
 		stdout("Invalid Login...\n");
 	}
 })

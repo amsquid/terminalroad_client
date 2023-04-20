@@ -73,7 +73,7 @@ const commands = {
 			for(let i = 0; i < files.contents.length; i++) {
 				let file = files.contents[i];
 
-				if(file.name == file_name && file.constructor == trFile) {
+				if(file.name == file_name && isFile(file)) {
 					stdout(file.content + "\n");
 
 					return;
@@ -103,7 +103,7 @@ const commands = {
 				for(let i = 0; i < files.contents.length; i++) {
 					let file = files.contents[i];
 
-					if(file.name == folder_name && file.constructor == trFolder) {
+					if(file.name == folder_name && isFolder(file)) {
 						working_directory += folder_name + "/";
 
 						return;
