@@ -152,6 +152,27 @@ const commands = {
 		},
 		description: "Overwrites file with given text | put <file name> <content>"
 	},
+	"push": {
+		action: function(args) {
+			let file_name = args[1];
+			let content = "";
+
+			for(let i = 2; i < args.length; i++) {
+				content += args[i] + " ";
+			}
+
+			let file = new trFile(file_name, content);
+
+			let path = working_directory + file_name;
+
+			let code = writeToFile(path, content, true);
+
+			if(code == -1) {
+				stdout("File does not exist\n");
+			}
+		},
+		description: "Appends text to a given file | push <file name> <content>"
+	},
 	"mkdir": {
 		action: function(args) {
 			let folder_name = args[1];

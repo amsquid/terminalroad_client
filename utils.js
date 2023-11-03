@@ -105,7 +105,7 @@ function addFileToDir(folder_path, file) {
 	save();
 }
 
-function writeToFile(file_path, content) {
+function writeToFile(file_path, content, append = false) {
 	let split_path = file_path.split("/");
 
 	let file_name = split_path[split_path.length - 1];
@@ -145,7 +145,12 @@ function writeToFile(file_path, content) {
 	if(file == undefined) {
 		return -1;
 	} else {
-		file.content = content;
+		if(append) {
+			file.content += content;
+		} else {
+			file.content = content;
+
+		}
 	}
 
 	save();
