@@ -38,7 +38,7 @@ const commands = {
 		action: function(args) {
 			document.getElementById("out").innerText = "";
 		},
-		description: "Clears input the screen"
+		description: "Clears input the screen | clear"
 	},
 	"echo": {
 		action: function(args) {
