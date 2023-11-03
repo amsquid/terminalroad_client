@@ -38,7 +38,7 @@ function updateInput() {
 				break;
 
 			case 3:
-				let signed_in = signin(ip, user, pass);
+				prompt = "Connecting...";
 
 				login_prompt = 0;
 

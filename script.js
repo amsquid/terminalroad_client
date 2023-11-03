@@ -89,8 +89,6 @@ document.addEventListener("keydown", (e) => {
 						if(login_prompt == 3) {
 							signin(ip, user, pass);
 
-							login_prompt = -1;
-
 							canWrite = false;
 
 							updateInput();
